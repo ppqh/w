@@ -19,7 +19,6 @@
             height: 100vh;
         }
 
-        /* ===== 地図（全画面） ===== */
         #map {
             height: 100vh;
             width: 100vw;
@@ -29,15 +28,15 @@
             z-index: 1;
         }
 
-        /* ===== 上部ヘッダー（透明） ===== */
+        /* ===== ヘッダー ===== */
         .header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 12px 16px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+            padding: 10px 16px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -47,60 +46,60 @@
 
         .header .title {
             font-family: 'Mochiy Pop One', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #fff;
             text-shadow: 0 2px 8px rgba(0,0,0,0.8);
             letter-spacing: 1px;
         }
         .header .title .sub {
             font-family: 'Kiwi Maru', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #aaa;
             font-weight: normal;
             display: block;
         }
 
         .header .update-time {
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             color: #aaa;
             background: rgba(0,0,0,0.5);
-            padding: 4px 10px;
+            padding: 3px 10px;
             border-radius: 20px;
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.06);
         }
 
-        /* ===== 天気情報パネル（左下） ===== */
+        /* ===== 天気パネル ===== */
         .weather-panel {
             position: fixed;
             bottom: 20px;
-            left: 20px;
+            left: 16px;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(12px);
-            border-radius: 16px;
-            padding: 16px 20px;
-            min-width: 160px;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border-radius: 14px;
+            padding: 14px 18px;
+            min-width: 150px;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
             pointer-events: none;
         }
         .weather-panel .temp {
             font-family: 'Mochiy Pop One', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: #ffb3c6;
         }
         .weather-panel .temp .unit {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #888;
         }
         .weather-panel .desc {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #ccc;
             margin-top: -2px;
         }
         .weather-panel .detail {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #888;
             margin-top: 4px;
             display: flex;
@@ -109,21 +108,56 @@
         .weather-panel .detail span {
             display: flex;
             align-items: center;
-            gap: 4px;
-        }
-        .weather-panel .detail .icon {
-            font-size: 0.9rem;
+            gap: 3px;
         }
 
-        /* ===== レイヤー切替ボタン（右下） ===== */
+        /* ===== 台風情報パネル ===== */
+        .typhoon-panel {
+            position: fixed;
+            top: 65px;
+            right: 16px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 12px 16px;
+            min-width: 130px;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            pointer-events: none;
+            display: none;
+        }
+        .typhoon-panel.show { display: block; }
+        .typhoon-panel .label {
+            font-size: 0.6rem;
+            color: #888;
+            font-family: 'Mochiy Pop One', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .typhoon-panel .name {
+            font-family: 'Mochiy Pop One', sans-serif;
+            font-size: 1.2rem;
+            color: #ff6b6b;
+        }
+        .typhoon-panel .info {
+            font-size: 0.7rem;
+            color: #ccc;
+            margin-top: 2px;
+        }
+        .typhoon-panel .info .strong {
+            color: #ff6b6b;
+        }
+
+        /* ===== レイヤー切替 ===== */
         .layer-control {
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            right: 16px;
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
             pointer-events: none;
         }
         .layer-control > * { pointer-events: auto; }
@@ -131,69 +165,64 @@
         .layer-control button {
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #aaa;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
             font-family: 'Kiwi Maru', sans-serif;
             cursor: pointer;
             transition: all 0.3s;
-            min-width: 100px;
+            min-width: 90px;
             text-align: left;
             display: flex;
             align-items: center;
             gap: 6px;
         }
         .layer-control button:hover {
-            background: rgba(255, 179, 198, 0.2);
-            border-color: #ffb3c6;
+            background: rgba(255, 179, 198, 0.15);
+            border-color: rgba(255, 179, 198, 0.3);
             color: #fff;
         }
         .layer-control button.active {
-            background: rgba(255, 179, 198, 0.25);
+            background: rgba(255, 179, 198, 0.2);
             border-color: #ffb3c6;
             color: #ffb3c6;
         }
-        .layer-control button .indicator {
+        .layer-control button .dot {
             display: inline-block;
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            margin-right: 4px;
+            margin-right: 2px;
         }
-        .layer-control button .indicator.on {
-            background: #7bed9f;
-        }
-        .layer-control button .indicator.off {
-            background: #555;
-        }
+        .layer-control button .dot.on { background: #7bed9f; }
+        .layer-control button .dot.off { background: #444; }
 
-        /* ===== 位置情報ボタン（右上） ===== */
+        /* ===== 現在地ボタン ===== */
         .locate-btn {
             position: fixed;
-            top: 80px;
-            right: 20px;
+            top: 75px;
+            right: 16px;
             z-index: 1000;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #ccc;
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 0.75rem;
+            border: 1px solid rgba(255,255,255,0.06);
+            color: #aaa;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
             font-family: 'Kiwi Maru', sans-serif;
             cursor: pointer;
             transition: all 0.3s;
             pointer-events: auto;
         }
         .locate-btn:hover {
-            background: rgba(255, 179, 198, 0.2);
-            border-color: #ffb3c6;
+            background: rgba(255, 179, 198, 0.15);
+            border-color: rgba(255, 179, 198, 0.3);
             color: #fff;
         }
 
-        /* ===== ローディング ===== */
         .loading {
             position: fixed;
             top: 50%;
@@ -201,16 +230,16 @@
             transform: translate(-50%, -50%);
             z-index: 9999;
             color: #888;
-            font-size: 0.9rem;
-            background: rgba(0,0,0,0.8);
-            padding: 20px 30px;
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.85);
+            padding: 16px 28px;
             border-radius: 12px;
             border: 1px solid #333;
         }
         .loading .spinner {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border: 2px solid #333;
             border-top-color: #ffb3c6;
             border-radius: 50%;
@@ -220,33 +249,32 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* ===== レスポンシブ ===== */
         @media (max-width: 480px) {
-            .header .title { font-size: 1rem; }
-            .header .update-time { font-size: 0.55rem; padding: 2px 8px; }
-            .weather-panel { bottom: 80px; left: 12px; padding: 12px 16px; min-width: 130px; }
-            .weather-panel .temp { font-size: 1.6rem; }
-            .layer-control { bottom: 12px; right: 12px; }
-            .layer-control button { padding: 6px 10px; font-size: 0.65rem; min-width: 70px; }
-            .locate-btn { top: 70px; right: 12px; padding: 8px 10px; font-size: 0.65rem; }
+            .header .title { font-size: 0.95rem; }
+            .header .update-time { font-size: 0.5rem; padding: 2px 6px; }
+            .weather-panel { bottom: 75px; left: 10px; padding: 10px 14px; min-width: 120px; }
+            .weather-panel .temp { font-size: 1.4rem; }
+            .typhoon-panel { top: 60px; right: 10px; padding: 10px 12px; min-width: 100px; }
+            .typhoon-panel .name { font-size: 1rem; }
+            .layer-control { bottom: 10px; right: 10px; }
+            .layer-control button { padding: 4px 8px; font-size: 0.6rem; min-width: 60px; }
+            .locate-btn { top: 65px; right: 10px; padding: 6px 10px; font-size: 0.6rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== ローディング ===== -->
     <div class="loading" id="loading">
         <span class="spinner"></span> 読み込み中...
     </div>
 
-    <!-- ===== 地図コンテナ ===== -->
     <div id="map"></div>
 
     <!-- ===== ヘッダー ===== -->
     <div class="header">
         <div class="title">
-            🌊 防災・天気マップ
-            <span class="sub">災害情報・天気・避難所</span>
+          防災 天気マップ
+            <span class="sub">災害情報 天気 避難所 台風</span>
         </div>
         <div class="update-time" id="updateTime">更新: --</div>
     </div>
@@ -261,24 +289,35 @@
         </div>
     </div>
 
+    <!-- ===== 台風情報パネル ===== -->
+    <div class="typhoon-panel" id="typhoonPanel">
+        <div class="label">台風情報</div>
+        <div class="name" id="typhoonName">--</div>
+        <div class="info" id="typhoonInfo">--</div>
+        <div class="info" id="typhoonPos">--</div>
+    </div>
+
     <!-- ===== レイヤー切替 ===== -->
     <div class="layer-control">
         <button id="layerRain" class="active">
-            <span class="indicator on" id="rainIndicator"></span> 雨雲レーダー
+            <span class="dot on" id="rainDot"></span> 雨雲
         </button>
         <button id="layerFlood">
-            <span class="indicator off" id="floodIndicator"></span> 洪水ハザード
+            <span class="dot off" id="floodDot"></span> 洪水
         </button>
         <button id="layerLandslide">
-            <span class="indicator off" id="landslideIndicator"></span> 土砂災害
+            <span class="dot off" id="landslideDot"></span> 土砂
         </button>
         <button id="layerShelter">
-            <span class="indicator off" id="shelterIndicator"></span> 避難所
+            <span class="dot off" id="shelterDot"></span> 避難所
+        </button>
+        <button id="layerTyphoon" class="active">
+            <span class="dot on" id="typhoonDot"></span> 台風
         </button>
     </div>
 
-    <!-- ===== 位置情報ボタン ===== -->
-    <button class="locate-btn" id="locateBtn">📍 現在地</button>
+    <!-- ===== 現在地ボタン ===== -->
+    <button class="locate-btn" id="locateBtn">現在地</button>
 
     <script>
         // ================================================================
@@ -286,14 +325,13 @@
         // ================================================================
         const map = L.map('map', {
             center: [35.6812, 139.7671],
-            zoom: 10,
+            zoom: 9,
             zoomControl: true,
             attributionControl: true
         });
 
-        // 地図タイル（OpenStreetMap）
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors',
+            attribution: 'OpenStreetMap contributors',
             maxZoom: 19
         }).addTo(map);
 
@@ -305,17 +343,22 @@
         let floodLayer = null;
         let landslideLayer = null;
         let shelterLayer = null;
+        let typhoonLayer = null;
+        let typhoonMarker = null;
+        let typhoonPath = null;
         let currentLat = 35.6812;
         let currentLng = 139.7671;
+
         let layerStates = {
             rain: true,
             flood: false,
             landslide: false,
-            shelter: false
+            shelter: false,
+            typhoon: true
         };
 
         // ================================================================
-        // ★★★ 現在地表示 ★★★
+        // ★★★ 現在地 ★★★
         // ================================================================
         function locateUser() {
             if (!navigator.geolocation) {
@@ -323,7 +366,7 @@
                 return;
             }
 
-            document.getElementById('locateBtn').textContent = '📍 取得中...';
+            document.getElementById('locateBtn').textContent = '取得中...';
             document.getElementById('locateBtn').disabled = true;
 
             navigator.geolocation.getCurrentPosition(
@@ -337,32 +380,30 @@
                         userMarker.setLatLng([lat, lng]);
                     } else {
                         const icon = L.divIcon({
-                            html: '📍',
-                            className: '',
-                            iconSize: [30, 30],
-                            iconAnchor: [15, 30]
+                            html: '●',
+                            className: 'user-marker',
+                            iconSize: [20, 20],
+                            iconAnchor: [10, 10]
                         });
                         userMarker = L.marker([lat, lng], { icon: icon }).addTo(map);
+                        userMarker.bindPopup('現在地');
                     }
-                    map.setView([lat, lng], 13);
-                    document.getElementById('locateBtn').textContent = '📍 現在地';
+                    map.setView([lat, lng], 12);
+                    document.getElementById('locateBtn').textContent = '現在地';
                     document.getElementById('locateBtn').disabled = false;
 
-                    // 天気情報を取得
                     fetchWeather(lat, lng);
                 },
                 (err) => {
                     alert('位置情報を取得できませんでした: ' + err.message);
-                    document.getElementById('locateBtn').textContent = '📍 現在地';
+                    document.getElementById('locateBtn').textContent = '現在地';
                     document.getElementById('locateBtn').disabled = false;
                 }
             );
         }
 
         // ================================================================
-        // ★★★ 天気情報取得（OpenWeatherMap） ★★★
-        // 無料APIを使用（APIキー不要版は精度が低いので注意）
-        // ここでは無料で使える wttr.in を使用
+        // ★★★ 天気情報（wttr.in） ★★★
         // ================================================================
         async function fetchWeather(lat, lng) {
             try {
@@ -371,54 +412,119 @@
                 const data = await response.json();
 
                 if (data && data.current_condition) {
-                    const current = data.current_condition[0];
-                    const temp = current.temp_C;
-                    const desc = current.weatherDesc[0].value;
-                    const rain = current.precipMM || '0';
-                    const wind = current.windspeedKmph || '0';
-
+                    const c = data.current_condition[0];
                     document.getElementById('tempDisplay').innerHTML =
-                        temp + '<span class="unit">°C</span>';
-                    document.getElementById('weatherDesc').textContent = desc;
-                    document.getElementById('rainDisplay').textContent = '☔ ' + rain + 'mm';
-                    document.getElementById('windDisplay').textContent = '💨 ' + wind + 'm/s';
+                        c.temp_C + '<span class="unit">°C</span>';
+                    document.getElementById('weatherDesc').textContent = c.weatherDesc[0].value;
+                    document.getElementById('rainDisplay').textContent = '☔ ' + (c.precipMM || '0') + 'mm';
+                    document.getElementById('windDisplay').textContent = '💨 ' + (c.windspeedKmph || '0') + 'm/s';
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString();
                 }
             } catch (error) {
-                console.warn('天気情報取得エラー:', error);
-                document.getElementById('tempDisplay').innerHTML = '--<span class="unit">°C</span>';
-                document.getElementById('weatherDesc').textContent = '情報取得中...';
+                console.warn('天気取得エラー:', error);
             }
         }
 
         // ================================================================
-        // ★★★ 雨雲レーダー（オープンデータ） ★★★
-        // 日本の雨雲レーダー（気象庁のデータを利用）
+        // ★★★ 台風情報（デモデータ） ★★★
+        // 実際の台風情報は気象庁APIなどから取得
+        // ================================================================
+        function loadTyphoonLayer() {
+            if (typhoonLayer) {
+                map.removeLayer(typhoonLayer);
+                typhoonLayer = null;
+                typhoonMarker = null;
+                typhoonPath = null;
+                document.getElementById('typhoonPanel').classList.remove('show');
+                return;
+            }
+
+            // デモ用：現在の台風情報（実際はAPIから取得）
+            const typhoonData = {
+                name: '台風10号',
+                strength: '強い',
+                lat: 29.5,
+                lng: 142.0,
+                pressure: '960hPa',
+                wind: '45m/s',
+                speed: '20km/h',
+                direction: '北西'
+            };
+
+            // 台風マーカー
+            const icon = L.divIcon({
+                html: '🌀',
+                className: 'typhoon-marker',
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
+            });
+            typhoonMarker = L.marker([typhoonData.lat, typhoonData.lng], { icon: icon }).addTo(map);
+            typhoonMarker.bindPopup(
+                '<b>' + typhoonData.name + '</b><br>' +
+                '強さ: ' + typhoonData.strength + '<br>' +
+                '気圧: ' + typhoonData.pressure + '<br>' +
+                '風速: ' + typhoonData.wind
+            );
+
+            // 進路予想（デモの経路）
+            const pathPoints = [
+                [typhoonData.lat, typhoonData.lng],
+                [typhoonData.lat + 2, typhoonData.lng - 3],
+                [typhoonData.lat + 4, typhoonData.lng - 6],
+                [typhoonData.lat + 6, typhoonData.lng - 8]
+            ];
+            typhoonPath = L.polyline(pathPoints, {
+                color: '#ff6b6b',
+                weight: 3,
+                dashArray: '8, 8',
+                opacity: 0.7
+            }).addTo(map);
+
+            typhoonLayer = L.layerGroup([typhoonMarker, typhoonPath]);
+
+            // パネル表示
+            const panel = document.getElementById('typhoonPanel');
+            panel.classList.add('show');
+            document.getElementById('typhoonName').textContent = typhoonData.name;
+            document.getElementById('typhoonInfo').textContent =
+                '強さ: ' + typhoonData.strength + ' | 気圧: ' + typhoonData.pressure;
+            document.getElementById('typhoonPos').textContent =
+                '風速: ' + typhoonData.wind + ' | 進行: ' + typhoonData.direction + ' ' + typhoonData.speed;
+
+            map.addLayer(typhoonLayer);
+        }
+
+        // ================================================================
+        // ★★★ 雨雲レイヤー（デモ） ★★★
         // ================================================================
         function loadRainLayer() {
             if (rainLayer) {
                 map.removeLayer(rainLayer);
                 rainLayer = null;
+                return;
             }
-
-            // 簡易的な雨雲レーダー（タイル表示）
-            // 実際の雨雲レーダーは有料APIが多いため、代替として降水量タイルを使用
-            rainLayer = L.tileLayer(
-                'https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=dummy',
-                {
-                    opacity: 0.5,
-                    attribution: '&copy; OpenWeatherMap'
-                }
-            );
-            // ダミーAPIキーのため、実際には表示されない
-            // 本番ではOpenWeatherMapの有料APIキーが必要
+            // デモ用の簡易レイヤー（色付きポリゴン）
+            const areas = [
+                { lat: 35.6, lng: 139.7, r: 0.3 },
+                { lat: 35.7, lng: 139.8, r: 0.2 },
+                { lat: 35.5, lng: 139.6, r: 0.25 },
+            ];
+            rainLayer = L.layerGroup();
+            areas.forEach(a => {
+                const circle = L.circle([a.lat, a.lng], {
+                    radius: a.r * 100000,
+                    color: '#3498db',
+                    fillColor: '#3498db',
+                    fillOpacity: 0.15,
+                    weight: 1
+                }).addTo(rainLayer);
+                circle.bindPopup('雨雲（デモ）');
+            });
             map.addLayer(rainLayer);
         }
 
         // ================================================================
-        // ★★★ ハザードマップ（疑似） ★★★
-        // 実際のハザードマップはGeoJSONデータが必要
-        // ここではデモ用に代わりに色付き領域を表示
+        // ★★★ ハザードレイヤー（デモ） ★★★
         // ================================================================
         function loadFloodLayer() {
             if (floodLayer) {
@@ -426,23 +532,19 @@
                 floodLayer = null;
                 return;
             }
-
-            // デモ用：東京湾周辺に疑似ハザードエリアを表示
-            const floodAreas = [
-                [[35.65, 139.75], [35.67, 139.78], [35.64, 139.80]],
-                [[35.60, 139.72], [35.62, 139.76], [35.58, 139.78]],
+            const areas = [
+                [[35.63, 139.73], [35.66, 139.76], [35.62, 139.78]],
+                [[35.58, 139.70], [35.61, 139.74], [35.57, 139.76]],
             ];
-
             floodLayer = L.layerGroup();
-            floodAreas.forEach(area => {
-                const polygon = L.polygon(area, {
+            areas.forEach(area => {
+                const poly = L.polygon(area, {
                     color: '#3498db',
                     fillColor: '#3498db',
-                    fillOpacity: 0.3,
-                    weight: 2,
-                    className: 'flood-zone'
+                    fillOpacity: 0.2,
+                    weight: 2
                 }).addTo(floodLayer);
-                polygon.bindPopup('⚠️ 洪水注意区域（デモ）');
+                poly.bindPopup('洪水注意区域（デモ）');
             });
             map.addLayer(floodLayer);
         }
@@ -453,23 +555,19 @@
                 landslideLayer = null;
                 return;
             }
-
-            // デモ用：山間部に疑似土砂災害エリア
-            const landslideAreas = [
-                [[35.70, 139.40], [35.73, 139.45], [35.68, 139.48]],
-                [[35.78, 139.35], [35.82, 139.40], [35.75, 139.42]],
+            const areas = [
+                [[35.72, 139.38], [35.75, 139.42], [35.70, 139.45]],
+                [[35.80, 139.32], [35.84, 139.38], [35.78, 139.40]],
             ];
-
             landslideLayer = L.layerGroup();
-            landslideAreas.forEach(area => {
-                const polygon = L.polygon(area, {
+            areas.forEach(area => {
+                const poly = L.polygon(area, {
                     color: '#e67e22',
                     fillColor: '#e67e22',
-                    fillOpacity: 0.3,
-                    weight: 2,
-                    className: 'landslide-zone'
+                    fillOpacity: 0.2,
+                    weight: 2
                 }).addTo(landslideLayer);
-                polygon.bindPopup('⚠️ 土砂災害注意区域（デモ）');
+                poly.bindPopup('土砂災害注意区域（デモ）');
             });
             map.addLayer(landslideLayer);
         }
@@ -480,8 +578,6 @@
                 shelterLayer = null;
                 return;
             }
-
-            // デモ用：避難所（東京周辺の代表的な場所）
             const shelters = [
                 { lat: 35.6895, lng: 139.6917, name: '新宿区役所' },
                 { lat: 35.6762, lng: 139.7786, name: '丸の内ビル' },
@@ -489,18 +585,17 @@
                 { lat: 35.6586, lng: 139.7454, name: '東京タワー' },
                 { lat: 35.6804, lng: 139.7690, name: '皇居' },
             ];
-
             shelterLayer = L.layerGroup();
             shelters.forEach(s => {
                 const marker = L.marker([s.lat, s.lng], {
                     icon: L.divIcon({
                         html: '🏠',
                         className: '',
-                        iconSize: [24, 24],
-                        iconAnchor: [12, 24]
+                        iconSize: [22, 22],
+                        iconAnchor: [11, 22]
                     })
                 }).addTo(shelterLayer);
-                marker.bindPopup('🏠 ' + s.name + '（避難所 デモ）');
+                marker.bindPopup(s.name + '（避難所 デモ）');
             });
             map.addLayer(shelterLayer);
         }
@@ -508,45 +603,56 @@
         // ================================================================
         // ★★★ レイヤー切替 ★★★
         // ================================================================
-        function toggleLayer(layerName, buttonId, indicatorId, loadFn) {
-            const btn = document.getElementById(buttonId);
-            const indicator = document.getElementById(indicatorId);
+        function toggleLayer(name, btnId, dotId, loadFn) {
+            const btn = document.getElementById(btnId);
+            const dot = document.getElementById(dotId);
 
-            if (layerStates[layerName]) {
-                layerStates[layerName] = false;
+            if (layerStates[name]) {
+                layerStates[name] = false;
                 btn.classList.remove('active');
-                indicator.className = 'indicator off';
-                // レイヤーを削除（loadFn内で削除処理）
-                loadFn();
+                dot.className = 'dot off';
+                loadFn(); // レイヤーを削除
             } else {
-                layerStates[layerName] = true;
+                layerStates[name] = true;
                 btn.classList.add('active');
-                indicator.className = 'indicator on';
-                loadFn();
+                dot.className = 'dot on';
+                loadFn(); // レイヤーを追加
             }
         }
 
         document.getElementById('layerRain').addEventListener('click', () => {
-            toggleLayer('rain', 'layerRain', 'rainIndicator', () => {
-                if (rainLayer) {
-                    map.removeLayer(rainLayer);
-                    rainLayer = null;
-                } else {
-                    loadRainLayer();
-                }
+            toggleLayer('rain', 'layerRain', 'rainDot', () => {
+                if (rainLayer) { map.removeLayer(rainLayer); rainLayer = null; }
+                else { loadRainLayer(); }
             });
         });
 
         document.getElementById('layerFlood').addEventListener('click', () => {
-            toggleLayer('flood', 'layerFlood', 'floodIndicator', loadFloodLayer);
+            toggleLayer('flood', 'layerFlood', 'floodDot', () => {
+                if (floodLayer) { map.removeLayer(floodLayer); floodLayer = null; }
+                else { loadFloodLayer(); }
+            });
         });
 
         document.getElementById('layerLandslide').addEventListener('click', () => {
-            toggleLayer('landslide', 'layerLandslide', 'landslideIndicator', loadLandslideLayer);
+            toggleLayer('landslide', 'layerLandslide', 'landslideDot', () => {
+                if (landslideLayer) { map.removeLayer(landslideLayer); landslideLayer = null; }
+                else { loadLandslideLayer(); }
+            });
         });
 
         document.getElementById('layerShelter').addEventListener('click', () => {
-            toggleLayer('shelter', 'layerShelter', 'shelterIndicator', loadShelterLayer);
+            toggleLayer('shelter', 'layerShelter', 'shelterDot', () => {
+                if (shelterLayer) { map.removeLayer(shelterLayer); shelterLayer = null; }
+                else { loadShelterLayer(); }
+            });
+        });
+
+        document.getElementById('layerTyphoon').addEventListener('click', () => {
+            toggleLayer('typhoon', 'layerTyphoon', 'typhoonDot', () => {
+                if (typhoonLayer) { map.removeLayer(typhoonLayer); typhoonLayer = null; typhoonMarker = null; typhoonPath = null; document.getElementById('typhoonPanel').classList.remove('show'); }
+                else { loadTyphoonLayer(); }
+            });
         });
 
         // ================================================================
@@ -554,25 +660,22 @@
         // ================================================================
         document.getElementById('locateBtn').addEventListener('click', locateUser);
 
-        // ローディング表示を消す
         setTimeout(() => {
             document.getElementById('loading').style.display = 'none';
         }, 1000);
 
-        // 初期位置（東京）で天気取得
         fetchWeather(35.6812, 139.7671);
 
-        // 雨雲レイヤーをデフォルトで表示
         setTimeout(() => {
             loadRainLayer();
+            loadTyphoonLayer();
         }, 500);
 
-        // 30秒ごとに天気更新
         setInterval(() => {
             if (currentLat && currentLng) {
                 fetchWeather(currentLat, currentLng);
             }
-        }, 30000);
+        }, 60000);
     </script>
 
 </body>
